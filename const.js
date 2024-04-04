@@ -1,5 +1,5 @@
 export const titleStyle = (customTitleStyle) => {
-	//default style of the title line, to be modified by customStyle
+	//default style of the title line, to be modified by customTitleStyle
 	return {
 		backgroundColor: "#fefefe",
 		borderBottom: "1px solid #cccccc",

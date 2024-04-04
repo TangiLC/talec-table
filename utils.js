@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 import React from "react";
 
 export const sortedLines = (key, order, lines) => {
@@ -68,7 +69,7 @@ export const PageButtons = ({
 									fontWeight: "bold",
 									border: "1px solid black",
 									background: `linear-gradient(0deg, ${colors[0]} 0%, ${colors[1]} 100%)`,
-							}
+							  }
 							: { paddingTop: "4px" }
 					}
 				>
