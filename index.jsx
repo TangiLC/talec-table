@@ -7,7 +7,6 @@ import {
 	evenStyle,
 	oddStyle,
 	initCustomLabels,
-	flexBetweenStyle,
 	arrowDivStyle,
 } from "./const";
 
@@ -52,7 +51,13 @@ const TalecTable = ({ lines, titles, hide = [], custom = {} }) => {
 	const searchColumns = custom.searchCol ? custom?.searchCol : columns;
 	const [searchTerm, setSearchTerm] = useState("");
 
-	const flxRwStyle = flexBetweenStyle("row");
+	const flxRwStyle = {
+		margin: "5px 20px",
+		display: "flex",
+		flexDirection: "row",
+		justifyContent: "space-between",
+	};
+
 	const lStyle = titleStyle(custom.titleStyle || {});
 	const eStyle = evenStyle(custom.evenLineStyle || {});
 	const oStyle = oddStyle(custom.oddLineStyle || {});
@@ -111,7 +116,7 @@ const TalecTable = ({ lines, titles, hide = [], custom = {} }) => {
 
 	return (
 		<div>
-			<div style={{ flxRwStyle }}>
+			<div style={flxRwStyle}>
 				<div>
 					{/* length */}
 					<label>
@@ -241,7 +246,7 @@ const TalecTable = ({ lines, titles, hide = [], custom = {} }) => {
 						</div>
 					))}
 					{/* Pagination */}
-					<div style={{ flxRwStyle }}>
+					<div style={flxRwStyle}>
 						<div>
 							{customLabels.show[0]}&nbsp;
 							{1 + parseInt(pageSize) * (currentPage - 1)}&nbsp;

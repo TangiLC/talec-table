@@ -11,16 +11,6 @@ export const titleStyle = (customTitleStyle) => {
 	};
 };
 
-export const flexBetweenStyle = (dir) => {
-	//default style of the div containing length-choice&search and pagination&pagesButtons
-	return {
-		margin: "5px 20px",
-		display: "flex",
-		flexDirection: dir,
-		justifyContent: "space-between",
-	};
-};
-
 export const arrowDivStyle = (pos) => {
 	//default style of the sorting arrow, either top or bottom
 	return {
