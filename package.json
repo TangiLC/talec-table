@@ -1,7 +1,7 @@
 {
 	"name": "talec-table",
 	"version": "1.0.0",
-	"description": "Build table for react native.",
+	"description": "Build customizable table for react native",
 	"main": "index.jsx",
 	"scripts": {
 		"lint": "eslint ."
@@ -28,6 +28,7 @@
 		"react": "^18.2.0"
 	},
 	"dependencies": {
-		"react-dom": "^18.2.0"
+		"react-dom": "^18.2.0",
+		"react": "^18.2.0"
 	}
 }
