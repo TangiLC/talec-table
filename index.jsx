@@ -10,6 +10,13 @@ import {
 	arrowDivStyle,
 } from "./const";
 
+const flxRwStyle = {
+	margin: "5px 20px",
+	display: "flex",
+	flexDirection: "row",
+	justifyContent: "space-between",
+};
+
 const TalecTable = ({ lines, titles, hide = [], custom = {} }) => {
 	const lastColumn = custom.actionColumn ? custom.actionColumn : null;
 	const colWidth = custom.columns?.width ? custom.columns.width : [];
@@ -50,13 +57,6 @@ const TalecTable = ({ lines, titles, hide = [], custom = {} }) => {
 	const [columns, setColumns] = useState([]);
 	const searchColumns = custom.searchCol ? custom?.searchCol : columns;
 	const [searchTerm, setSearchTerm] = useState("");
-
-	const flxRwStyle = {
-		margin: "5px 20px",
-		display: "flex",
-		flexDirection: "row",
-		justifyContent: "space-between",
-	};
 
 	const lStyle = titleStyle(custom.titleStyle || {});
 	const eStyle = evenStyle(custom.evenLineStyle || {});
