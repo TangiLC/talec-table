@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
 import { sortedLines, filterLines, PageButtons, darkenColor } from "./utils";
@@ -11,24 +12,35 @@ import {
 } from "./const";
 
 const TalecTable = ({ lines, titles, hide = [], custom = {} }) => {
-	const lastColumn = custom?.actionColumn ? custom.actionColumn : null;
-	const colWidth = custom?.columns?.width ? custom.columns.width : [];
-	const lengthChoice = custom?.lengthChoice
-		? custom.lengthChoice
-		: [10, 20, 50];
+	const lastColumn = custom.actionColumn ? custom.actionColumn : null;
+	const colWidth = custom.columns?.width ? custom.columns.width : [];
+	const lengthChoice = custom.lengthChoice ? custom.lengthChoice : [10, 20, 50];
+	const defaultwidth = custom.columns?.values
+		? Math.floor(
+				100 /
+					(custom.columns.values.length -
+						hide.length +
+						(custom.actionColumn ? 1 : 0))
+		  )
+		: Math.floor(
+				100 /
+					(Object.keys(titles).length -
+						hide.length +
+						(custom.actionColumn ? 1 : 0))
+		  );
 
 	const [customLabels, setCustomLabels] = useState(
 		initCustomLabels(custom.text || {})
 	);
 	useEffect(() => {
-		setCustomLabels(initCustomLabels(custom.text));
+		setCustomLabels(initCustomLabels(custom.text || {}));
 	}, [custom.text]);
 
 	const [emptyArrayMessage, setEmptyArrayMessage] = useState(
 		custom.emptyArrayMessage || "No data"
 	);
 	useEffect(() => {
-		setEmptyArrayMessage(custom.emptyArrayMessage || "No data");
+		setEmptyArrayMessage(custom?.emptyArrayMessage || "No data");
 	}, [custom.emptyArrayMessage]);
 
 	const [sortKey, setSortKey] = useState(null);
@@ -37,12 +49,12 @@ const TalecTable = ({ lines, titles, hide = [], custom = {} }) => {
 	const [pageSize, setPageSize] = useState(lengthChoice[0]);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [columns, setColumns] = useState([]);
-	const searchColumns = custom.searchCol ? custom.searchCol : columns;
+	const searchColumns = custom.searchCol ? custom?.searchCol : columns;
 	const [searchTerm, setSearchTerm] = useState("");
 
-	const lStyle = titleStyle(custom.titleStyle);
-	const eStyle = evenStyle(custom.evenLineStyle);
-	const oStyle = oddStyle(custom.oddLineStyle);
+	const lStyle = titleStyle(custom.titleStyle || {});
+	const eStyle = evenStyle(custom.evenLineStyle || {});
+	const oStyle = oddStyle(custom.oddLineStyle || {});
 	const selectedEStyle = {
 		backgroundColor: darkenColor(eStyle.backgroundColor),
 	};
@@ -134,7 +146,9 @@ const TalecTable = ({ lines, titles, hide = [], custom = {} }) => {
 									<div
 										key={index}
 										style={{
-											width: colWidth[index] ? colWidth[index] : "auto",
+											width: colWidth[index]
+												? colWidth[index]
+												: `${defaultwidth}%`,
 											...(sortKey === key && selectedOStyle),
 											display: "flex",
 											flexDirection: "row",
@@ -188,7 +202,9 @@ const TalecTable = ({ lines, titles, hide = [], custom = {} }) => {
 										<div
 											key={subIndex}
 											style={{
-												width: colWidth[subIndex] ? colWidth[subIndex] : "auto",
+												width: colWidth[subIndex]
+													? colWidth[subIndex]
+													: `${defaultwidth}%`,
 												...(sortKey === key &&
 													(index % 2 === 0 ? selectedEStyle : selectedOStyle)),
 											}}
@@ -204,6 +220,7 @@ const TalecTable = ({ lines, titles, hide = [], custom = {} }) => {
 										flex: 1,
 										display: "flex",
 										justifyContent: "space-around",
+										width: colWidth[-1] ? colWidth[-1] : `${defaultwidth}%`,
 									}}
 								>
 									{lastColumn.actions.map(
