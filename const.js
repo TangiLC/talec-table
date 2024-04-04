@@ -11,12 +11,14 @@ export const titleStyle = (customTitleStyle) => {
 	};
 };
 
-export const flexRowBetweenStyle = {
+export const flexRowBetweenStyle = () => {
 	//default style of the div containing length-choice&search and pagination&pagesButtons
-	margin: "5px 20px",
-	display: "flex",
-	flexDirection: "row",
-	justifyContent: "space-between",
+	return {
+		margin: "5px 20px",
+		display: "flex",
+		flexDirection: "row",
+		justifyContent: "space-between",
+	};
 };
 
 export const arrowDivStyle = (pos) => {

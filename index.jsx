@@ -110,7 +110,7 @@ const TalecTable = ({ lines, titles, hide = [], custom = {} }) => {
 
 	return (
 		<div>
-			<div style={flexRowBetweenStyle}>
+			<div style={flexRowBetweenStyle()}>
 				<div>
 					{/* length */}
 					<label>
@@ -240,7 +240,7 @@ const TalecTable = ({ lines, titles, hide = [], custom = {} }) => {
 						</div>
 					))}
 					{/* Pagination */}
-					<div style={flexRowBetweenStyle}>
+					<div style={flexRowBetweenStyle()}>
 						<div>
 							{customLabels.show[0]}&nbsp;
 							{1 + parseInt(pageSize) * (currentPage - 1)}&nbsp;
