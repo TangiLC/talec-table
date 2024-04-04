@@ -10,13 +10,15 @@ import {
 	arrowDivStyle,
 } from "./const";
 
-const TalecTable = ({ lines, titles, hide, custom }) => {
-	const lastColumn = custom.actionColumn ? custom.actionColumn : null;
-	const colWidth = custom.columns?.width ? custom.columns.width : [];
-	const lengthChoice = custom.lengthChoice ? custom.lengthChoice : [10, 20, 50];
+const TalecTable = ({ lines, titles, hide = [], custom = {} }) => {
+	const lastColumn = custom?.actionColumn ? custom.actionColumn : null;
+	const colWidth = custom?.columns?.width ? custom.columns.width : [];
+	const lengthChoice = custom?.lengthChoice
+		? custom.lengthChoice
+		: [10, 20, 50];
 
 	const [customLabels, setCustomLabels] = useState(
-		initCustomLabels(custom.text)
+		initCustomLabels(custom.text || {})
 	);
 	useEffect(() => {
 		setCustomLabels(initCustomLabels(custom.text));

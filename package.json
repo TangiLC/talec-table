@@ -1,5 +1,5 @@
 {
-	"name": "talec-react-table-component",
+	"name": "talec-table",
 	"version": "1.0.0",
 	"description": "Build table for react native.",
 	"main": "index.jsx",
@@ -26,5 +26,8 @@
 		"eslint": "^8.57.0",
 		"eslint-plugin-react": "^7.34.1",
 		"react": "^18.2.0"
+	},
+	"dependencies": {
+		"react-dom": "^18.2.0"
 	}
 }
