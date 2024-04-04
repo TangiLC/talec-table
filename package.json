@@ -8,7 +8,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/TangiLC/talec-table"
+		"url": "git+https://github.com/TangiLC/talec-table.git"
 	},
 	"keywords": [
 		"react-native-component",
