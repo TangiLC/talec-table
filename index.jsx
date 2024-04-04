@@ -10,13 +10,6 @@ import {
 	arrowDivStyle,
 } from "./const";
 
-const flxRwStyle = {
-	margin: "5px 20px",
-	display: "flex",
-	flexDirection: "row",
-	justifyContent: "space-between",
-};
-
 const TalecTable = ({ lines, titles, hide = [], custom = {} }) => {
 	const lastColumn = custom.actionColumn ? custom.actionColumn : null;
 	const colWidth = custom.columns?.width ? custom.columns.width : [];
@@ -116,7 +109,14 @@ const TalecTable = ({ lines, titles, hide = [], custom = {} }) => {
 
 	return (
 		<div>
-			<div style={flxRwStyle}>
+			<div
+				style={{
+					margin: "5px 20px",
+					display: "flex",
+					flexDirection: "row",
+					justifyContent: "space-between",
+				}}
+			>
 				<div>
 					{/* length */}
 					<label>
@@ -246,7 +246,14 @@ const TalecTable = ({ lines, titles, hide = [], custom = {} }) => {
 						</div>
 					))}
 					{/* Pagination */}
-					<div style={flxRwStyle}>
+					<div
+						style={{
+							margin: "5px 20px",
+							display: "flex",
+							flexDirection: "row",
+							justifyContent: "space-between",
+						}}
+					>
 						<div>
 							{customLabels.show[0]}&nbsp;
 							{1 + parseInt(pageSize) * (currentPage - 1)}&nbsp;
