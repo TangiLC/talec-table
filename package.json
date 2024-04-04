@@ -1,0 +1,30 @@
+{
+	"name": "talec-react-table-component",
+	"version": "1.0.0",
+	"description": "Build table for react native.",
+	"main": "index.jsx",
+	"scripts": {
+		"lint": "eslint ."
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/TangiLC/talec-table"
+	},
+	"keywords": [
+		"react-native-component",
+		"table",
+		"sort-column",
+		"pagination",
+		"custom-table",
+		"custom-style",
+		"custom-actions"
+	],
+	"author": "TaLec",
+	"license": "MIT",
+	"homepage": "https://github.com/TangiLC/talec-table#readme",
+	"devDependencies": {
+		"eslint": "^8.57.0",
+		"eslint-plugin-react": "^7.34.1",
+		"react": "^18.2.0"
+	}
+}

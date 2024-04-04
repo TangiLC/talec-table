@@ -1,6 +1,6 @@
-<p align='center'>⚠️ This Repository is No Longer Maintained ⚠️  </p>  
+<p align='center'>⚠️ This Repository is for Educational purpose and might not be maintained ⚠️  </p>  
 
-🔴 Attention: This repository is no longer being actively maintained or updated. The development has shifted to another GitHub repository. We encourage you to check out the new repository for the latest features and improvements. Thank you for your understanding and support! 🙌.
+🔴 Attention: This repository is not actively maintained or updated. Thank you for your understanding and support! 🙌.
 
 🙏 A big thank you to [Gil2015](https://github.com/Gil2015), the original author, for their tremendous efforts and contributions to this project!  
 

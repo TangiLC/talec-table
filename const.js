@@ -1,4 +1,5 @@
 export const titleStyle = (customTitleStyle) => {
+	//default style of the title line, to be modified by customStyle
 	return {
 		backgroundColor: "#fefefe",
 		borderBottom: "1px solid #cccccc",
@@ -11,6 +12,7 @@ export const titleStyle = (customTitleStyle) => {
 };
 
 export const flexRowBetweenStyle = {
+	//default style of the div containing length-choice&search and pagination&pagesButtons
 	margin: "5px 20px",
 	display: "flex",
 	flexDirection: "row",
@@ -18,6 +20,7 @@ export const flexRowBetweenStyle = {
 };
 
 export const arrowDivStyle = (pos) => {
+	//default style of the sorting arrow, either top or bottom
 	return {
 		width: "10%",
 		fontSize: ".6rem",
@@ -29,6 +32,7 @@ export const arrowDivStyle = (pos) => {
 };
 
 export const evenStyle = (customEvenStyle) => {
+	//default style of the even lines of the tables, to be modified by customEvenStyle
 	return {
 		backgroundColor: "#eeeeee",
 		borderBottom: "1px solid #dddddd",
@@ -38,6 +42,7 @@ export const evenStyle = (customEvenStyle) => {
 };
 
 export const oddStyle = (customOddStyle) => {
+	//default style of the odd lines of the tables, to be modified by customOddStyle
 	return {
 		backgroundColor: "#fdfdfd",
 		borderBottom: "1px solid #dddddd",
@@ -47,6 +52,7 @@ export const oddStyle = (customOddStyle) => {
 };
 
 export const initCustomLabels = (customText) => ({
+	//default language names for labels, to be modified by customText
 	length: customText.itemPerPage || "Items per page :",
 	search: customText.search || "Search :",
 	show: customText.showingItems || ["Showing items", "to", "out of"],

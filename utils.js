@@ -22,15 +22,12 @@ export const sortedLines = (key, order, lines) => {
 	});
 };
 
-export const filterLines = (searchTerm,lines,searchColumns) => {
-    return lines.filter((line) => {
-        return searchColumns.some((column) =>
-            line[column]
-                ?.toString()
-                .toLowerCase()
-                .includes(searchTerm.toLowerCase())
-        );
-    });
+export const filterLines = (searchTerm, lines, searchColumns) => {
+	return lines.filter((line) => {
+		return searchColumns.some((column) =>
+			line[column]?.toString().toLowerCase().includes(searchTerm.toLowerCase())
+		);
+	});
 };
 
 export const PageButtons = ({
@@ -70,9 +67,8 @@ export const PageButtons = ({
 									padding: "3px",
 									fontWeight: "bold",
 									border: "1px solid black",
-									background: colors[0],
 									background: `linear-gradient(0deg, ${colors[0]} 0%, ${colors[1]} 100%)`,
-							  }
+							}
 							: { paddingTop: "4px" }
 					}
 				>

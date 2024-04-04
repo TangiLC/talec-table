@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
 import { sortedLines, filterLines, PageButtons, darkenColor } from "./utils";
 import {
@@ -9,7 +10,7 @@ import {
 	arrowDivStyle,
 } from "./const";
 
-const TangiTable = ({ lines, titles, hide, custom }) => {
+const TalecTable = ({ lines, titles, hide, custom }) => {
 	const lastColumn = custom.actionColumn ? custom.actionColumn : null;
 	const colWidth = custom.columns?.width ? custom.columns.width : [];
 	const lengthChoice = custom.lengthChoice ? custom.lengthChoice : [10, 20, 50];
@@ -204,6 +205,7 @@ const TangiTable = ({ lines, titles, hide, custom }) => {
 									}}
 								>
 									{lastColumn.actions.map(
+										// eslint-disable-next-line no-unused-vars
 										({ icon, func, target, label }, iconIndex) => (
 											<span
 												key={iconIndex}
@@ -256,4 +258,4 @@ const TangiTable = ({ lines, titles, hide, custom }) => {
 	);
 };
 
-export default TangiTable;
+export default TalecTable;
