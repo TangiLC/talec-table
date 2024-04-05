@@ -8,18 +8,24 @@ export const sortedLines = (key, order, lines) => {
 		const valueA = a[key];
 		const valueB = b[key];
 
+		const dateA = /\d{4}-\d{2}-\d{2}/.test(valueA) ? new Date(valueA) : valueA;
+		const dateB = /\d{4}-\d{2}-\d{2}/.test(valueB) ? new Date(valueB) : valueB;
+
 		const numA = parseFloat(valueA);
 		const numB = parseFloat(valueB);
 
+		// dates sorting
+		if (dateA instanceof Date && dateB instanceof Date) {
+			return order === "asc" ? dateA - dateB : dateB - dateA;
+		}
+		// number sorting
 		if (!isNaN(numA) && !isNaN(numB)) {
 			return order === "asc" ? numA - numB : numB - numA;
-		} else if (valueA instanceof Date && valueB instanceof Date) {
-			return order === "asc" ? valueA - valueB : valueB - valueA;
-		} else {
-			if (valueA < valueB) return order === "asc" ? -1 : 1;
-			if (valueA > valueB) return order === "asc" ? 1 : -1;
-			if (valueA === valueB) return 0;
 		}
+		// Alpha sorting
+		if (valueA < valueB) return order === "asc" ? -1 : 1;
+		if (valueA > valueB) return order === "asc" ? 1 : -1;
+		return 0;
 	});
 };
 
@@ -41,18 +47,30 @@ export const PageButtons = ({
 		const buttons = [];
 		if (currentPage !== 1) {
 			buttons.push(
-				<div key="gotoFirst" onClick={() => handleChangePage(1)}>
+				<div
+					key="gotoFirst"
+					data-testid="gotoFirst"
+					onClick={() => handleChangePage(1)}
+				>
 					⏮
 				</div>
 			);
 			buttons.push(
-				<div key="prev" onClick={() => handleChangePage(currentPage - 1)}>
+				<div
+					key="prev"
+					data-testid="prev"
+					onClick={() => handleChangePage(currentPage - 1)}
+				>
 					&nbsp;⏴&nbsp;
 				</div>
 			);
 		}
 		if (currentPage > 2) {
-			buttons.push(<div key="beforeEllipsis">...</div>);
+			buttons.push(
+				<div key="beforeEllipsis" data-testid="beforeEll">
+					...
+				</div>
+			);
 		}
 		let start = Math.max(currentPage - 2, 1);
 		let end = Math.min(currentPage + 2, totalPages);
@@ -79,17 +97,29 @@ export const PageButtons = ({
 		}
 
 		if (currentPage < totalPages - 2) {
-			buttons.push(<div key="afterEllipsis">...</div>);
+			buttons.push(
+				<div key="afterEllipsis" data-testid="afterEll">
+					...
+				</div>
+			);
 		}
 
 		if (currentPage !== totalPages) {
 			buttons.push(
-				<div key="next" onClick={() => handleChangePage(currentPage + 1)}>
+				<div
+					key="next"
+					data-testid="next"
+					onClick={() => handleChangePage(currentPage + 1)}
+				>
 					&nbsp;⏵&nbsp;
 				</div>
 			);
 			buttons.push(
-				<div key="gotoEnd" onClick={() => handleChangePage(totalPages)}>
+				<div
+					key="gotoEnd"
+					data-testid="gotoEnd"
+					onClick={() => handleChangePage(totalPages)}
+				>
 					⏭
 				</div>
 			);
