@@ -1,7 +1,12 @@
 // jest test utils.js
 import "@testing-library/jest-dom";
 import React from "react";
-import { render, fireEvent } from "@testing-library/react";
+import {
+	render,
+	fireEvent,
+	getByTestId,
+	queryByTestId,
+} from "@testing-library/react";
 
 import { sortedLines, filterLines, PageButtons, darkenColor } from "./utils";
 
@@ -75,7 +80,7 @@ describe("sortedLines", () => {
 		]);
 	});
 
-    test("should return no sorting if no key", () => {
+	test("should return no sorting if no key", () => {
 		const result = sortedLines("", "asc", lines);
 		expect(result).toEqual([
 			{ id: 1, name: "John", doB: "1996-01-01", zip: 58170 },
@@ -87,18 +92,70 @@ describe("sortedLines", () => {
 
 describe("filterLines", () => {
 	const lines = [
-		{ id: 1, name: "John", age: 30 },
-		{ id: 2, name: "Alice", age: 25 },
-		{ id: 3, name: "Bob", age: 35 },
+		{ id: 1, name: "John", doB: "1996-01-01", zip: 58170 },
+		{ id: 2, name: "Alice", doB: "2000-01-01", zip: 46808 },
+		{ id: 3, name: "Bob", doB: "1990-01-01", zip: 51300 },
 	];
 
 	test("should filter lines by name", () => {
 		const result = filterLines("Alice", lines, ["name"]);
-		expect(result).toEqual([{ id: 2, name: "Alice", age: 25 }]);
+		expect(result).toEqual([
+			{ id: 2, name: "Alice", doB: "2000-01-01", zip: 46808 },
+		]);
+	});
+
+	test("should filter lines by multiple terms", () => {
+		const result = filterLines("Alice Bob", lines, ["name"]);
+		expect(result).toEqual([
+			{ id: 2, name: "Alice", doB: "2000-01-01", zip: 46808 },
+			{ id: 3, name: "Bob", doB: "1990-01-01", zip: 51300 },
+		]);
+	});
+
+	test("should filter lines by multiple columns", () => {
+		const result = filterLines("00", lines, ["doB", "zip"]);
+		expect(result).toEqual([
+			{ id: 2, name: "Alice", doB: "2000-01-01", zip: 46808 },
+			{ id: 3, name: "Bob", doB: "1990-01-01", zip: 51300 },
+		]);
 	});
 });
 
 describe("PageButtons", () => {
+	test("should render buttons correctly on first page", () => {
+		const { getByText, getByTestId } = render(
+			<PageButtons
+				totalPages={8}
+				currentPage={1}
+				handleChangePage={jest.fn()}
+				colors={["red", "blue"]}
+			/>
+		);
+		expect(queryByTestId(document.body, "gotoFirst")).toBeNull();
+		expect(queryByTestId(document.body, "prev")).toBeNull();
+		expect(queryByTestId(document.body, "beforeEll")).toBeNull();
+		expect(getByTestId("gotoEnd")).toBeInTheDocument();
+		expect(getByTestId("next")).toBeInTheDocument();
+		expect(getByTestId("afterEll")).toBeInTheDocument();
+	});
+
+	test("should render buttons correctly on last page", () => {
+		const { getByText, getByTestId } = render(
+			<PageButtons
+				totalPages={8}
+				currentPage={8}
+				handleChangePage={jest.fn()}
+				colors={["red", "blue"]}
+			/>
+		);
+		expect(queryByTestId(document.body, "gotoEnd")).toBeNull();
+		expect(queryByTestId(document.body, "next")).toBeNull();
+		expect(queryByTestId(document.body, "afterEll")).toBeNull();
+		expect(getByTestId("gotoFirst")).toBeInTheDocument();
+		expect(getByTestId("prev")).toBeInTheDocument();
+		expect(getByTestId("beforeEll")).toBeInTheDocument();
+	});
+
 	test("should render buttons correctly", () => {
 		const { getByText, getByTestId } = render(
 			<PageButtons
@@ -108,18 +165,12 @@ describe("PageButtons", () => {
 				colors={["red", "blue"]}
 			/>
 		);
-		const gotoFirstButton = getByTestId("gotoFirst");
-		expect(gotoFirstButton).toBeInTheDocument();
-		const gotoEndButton = getByTestId("gotoEnd");
-		expect(gotoEndButton).toBeInTheDocument();
-		const prevButton = getByTestId("prev");
-		expect(prevButton).toBeInTheDocument();
-		const nextButton = getByTestId("next");
-		expect(nextButton).toBeInTheDocument();
-		const beforeEllButton = getByTestId("beforeEll");
-		expect(beforeEllButton).toBeInTheDocument();
-		const afterEllButton = getByTestId("afterEll");
-		expect(afterEllButton).toBeInTheDocument();
+		expect(getByTestId("gotoFirst")).toBeInTheDocument();
+		expect(getByTestId("prev")).toBeInTheDocument();
+		expect(getByTestId("beforeEll")).toBeInTheDocument();
+		expect(getByTestId("gotoEnd")).toBeInTheDocument();
+		expect(getByTestId("next")).toBeInTheDocument();
+		expect(getByTestId("afterEll")).toBeInTheDocument();
 	});
 
 	test("should handle page change correctly", () => {

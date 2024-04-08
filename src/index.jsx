@@ -116,12 +116,18 @@ const TalecTable = ({ lines, titles, hide = [], custom = {} }) => {
 					flexDirection: "row",
 					justifyContent: "space-between",
 				}}
+				className="TalecTable-topContainer"
 			>
 				<div>
 					{/* length */}
 					<label>
 						{customLabels.length}
-						<select value={pageSize} onChange={handlePageSizeChange}>
+						<select
+							id="TalecTable-sizeSelect"
+							test-id="TalecTable-sizeSelect"
+							value={pageSize}
+							onChange={handlePageSizeChange}
+						>
 							{lengthChoice.map((option, index) => (
 								<option key={index} value={option}>
 									{option}
@@ -134,6 +140,8 @@ const TalecTable = ({ lines, titles, hide = [], custom = {} }) => {
 				<div>
 					<label>{customLabels.search}</label>
 					<input
+						id="TalecTable-searchInput"
+						test-id="TalecTable-searchInput"
 						type="text"
 						value={searchTerm}
 						onChange={(e) => setSearchTerm(e.target.value)}
@@ -145,7 +153,7 @@ const TalecTable = ({ lines, titles, hide = [], custom = {} }) => {
 			) : (
 				<div>
 					{/* Titles */}
-					<div style={lStyle}>
+					<div className="TalecTable-titlesContainer" style={lStyle}>
 						{columns.map(
 							(key, index) =>
 								!hide.includes(key) && (
@@ -196,6 +204,7 @@ const TalecTable = ({ lines, titles, hide = [], custom = {} }) => {
 					{/* Data */}
 					{paginatedLines.map((line, index) => (
 						<div
+							className="TalecTable-rowContainer"
 							key={index}
 							style={{
 								display: "flex",
@@ -222,6 +231,7 @@ const TalecTable = ({ lines, titles, hide = [], custom = {} }) => {
 							{/* Last Column */}
 							{lastColumn !== null ? (
 								<div
+									className="TalecTable-actionsColumn"
 									style={{
 										flex: 1,
 										display: "flex",
@@ -247,6 +257,7 @@ const TalecTable = ({ lines, titles, hide = [], custom = {} }) => {
 					))}
 					{/* Pagination */}
 					<div
+						className="TalecTable-bottomContainer"
 						style={{
 							margin: "5px 20px",
 							display: "flex",

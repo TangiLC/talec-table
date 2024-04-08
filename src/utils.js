@@ -29,10 +29,14 @@ export const sortedLines = (key, order, lines) => {
 	});
 };
 
-export const filterLines = (searchTerm, lines, searchColumns) => {
+export const filterLines = (searchTerms, lines, searchColumns) => {
+	const searchTerm = searchTerms.split(/[ ,.!?]+/).filter(Boolean);
+
 	return lines.filter((line) => {
-		return searchColumns.some((column) =>
-			line[column]?.toString().toLowerCase().includes(searchTerm.toLowerCase())
+		return searchTerm.some((term) =>
+			searchColumns.some((column) =>
+				line[column]?.toString().toLowerCase().includes(term.toLowerCase())
+			)
 		);
 	});
 };
