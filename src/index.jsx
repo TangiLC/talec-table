@@ -236,7 +236,10 @@ const TalecTable = ({ lines, titles, hide = [], custom = {} }) => {
 										flex: 1,
 										display: "flex",
 										justifyContent: "space-around",
-										width: colWidth[-1] ? colWidth[-1] : `${defaultwidth}%`,
+										width:
+											colWidth.length > Object.keys(titles).length
+												? colWidth[-1]
+												: `${defaultwidth}%`,
 									}}
 								>
 									{lastColumn.actions.map(
