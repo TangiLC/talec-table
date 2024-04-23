@@ -32,7 +32,8 @@ export const filterLines = (searchTerms, lines, searchColumns) => {
 	return lines.filter((line) => {
 		return searchTerm.some((term) =>
 			searchColumns.some((column) =>
-				line[column]?.toString().toLowerCase().includes(term.toLowerCase())
+				line[column]?.toString().toLowerCase()
+				    .includes(term.toLowerCase())
 			)
 		);
 	});

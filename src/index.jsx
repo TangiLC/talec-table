@@ -288,9 +288,9 @@ const TalecTable = ({ lines = [], titles = {}, hide = [], custom = {} }) => {
 									}}
 								>
 									<PageButtons
+										currentPage={currentPage}
 										totalPages={totalPages}
 										handleChangePage={handleChangePage}
-										currentPage={currentPage}
 										colors={[eStyle.backgroundColor, oStyle.backgroundColor]}
 									/>
 								</div>
