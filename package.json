@@ -1,6 +1,6 @@
 {
 	"name": "talec-table",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"description": "Build customizable table for react native",
 	"main": "index.jsx",
 	"scripts": {

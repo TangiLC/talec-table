@@ -2,29 +2,26 @@
 import React from "react";
 
 export const sortedLines = (key, order, lines) => {
-	if (!key) return lines;
-
 	return lines.slice().sort((a, b) => {
-		const valueA = a[key];
-		const valueB = b[key];
-
-		const dateA = /\d{4}-\d{2}-\d{2}/.test(valueA) ? new Date(valueA) : valueA;
-		const dateB = /\d{4}-\d{2}-\d{2}/.test(valueB) ? new Date(valueB) : valueB;
-
-		const numA = parseFloat(valueA);
-		const numB = parseFloat(valueB);
-
-		// dates sorting
+		const A = a[key];
+		const B = b[key];
+		const dateA = /\d{4}-\d{2}-\d{2}/.test(A) ? new Date(A) : A;
+		const dateB = /\d{4}-\d{2}-\d{2}/.test(B) ? new Date(B) : B;
+		const numA = parseFloat(A);
+		const numB = parseFloat(B); // dates sorting
 		if (dateA instanceof Date && dateB instanceof Date) {
 			return order === "asc" ? dateA - dateB : dateB - dateA;
-		}
-		// number sorting
+		} // number sorting
 		if (!isNaN(numA) && !isNaN(numB)) {
 			return order === "asc" ? numA - numB : numB - numA;
 		}
 		// Alpha sorting
-		if (valueA < valueB) return order === "asc" ? -1 : 1;
-		if (valueA > valueB) return order === "asc" ? 1 : -1;
+		if (typeof A === "string" && typeof B === "string") {
+			const strA = A.toLowerCase();
+			const strB = B.toLowerCase();
+			if (strA < strB) return order === "asc" ? -1 : 1;
+			if (strA > strB) return order === "asc" ? 1 : -1;
+		}
 		return 0;
 	});
 };
@@ -56,7 +53,7 @@ export const PageButtons = ({
 					data-testid="gotoFirst"
 					onClick={() => handleChangePage(1)}
 				>
-					⏮
+					⏮1
 				</div>
 			);
 			buttons.push(
@@ -124,7 +121,7 @@ export const PageButtons = ({
 					data-testid="gotoEnd"
 					onClick={() => handleChangePage(totalPages)}
 				>
-					⏭
+					{totalPages}⏭
 				</div>
 			);
 		}

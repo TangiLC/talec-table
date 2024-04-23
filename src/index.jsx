@@ -10,7 +10,7 @@ import {
 	arrowDivStyle,
 } from "./const";
 
-const TalecTable = ({ lines, titles, hide = [], custom = {} }) => {
+const TalecTable = ({ lines = [], titles = {}, hide = [], custom = {} }) => {
 	const lastColumn = custom.actionColumn ? custom.actionColumn : null;
 	const colWidth = custom.columns?.width ? custom.columns.width : [];
 	const lengthChoice = custom.lengthChoice ? custom.lengthChoice : [10, 20, 50];
@@ -158,6 +158,7 @@ const TalecTable = ({ lines, titles, hide = [], custom = {} }) => {
 							(key, index) =>
 								!hide.includes(key) && (
 									<div
+										className="TalecTable-title"
 										key={index}
 										style={{
 											width: colWidth[index]
@@ -180,13 +181,11 @@ const TalecTable = ({ lines, titles, hide = [], custom = {} }) => {
 										>
 											{titles[key]}
 										</div>
-
-										{sortKey === key && (
+										{sortKey === key ? (
 											<div style={{ width: "10%", fontSize: ".7rem" }}>
 												{sortOrder === "asc" ? " ▲" : " ▼"}
 											</div>
-										)}
-										{sortKey !== key && (
+										) : (
 											<div style={{ display: "flex", flexDirection: "column" }}>
 												<div style={arrowDivStyle("top")}>▲</div>
 												<div style={arrowDivStyle("bottom")}>▼</div>

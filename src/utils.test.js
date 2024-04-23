@@ -194,9 +194,9 @@ describe("PageButtons", () => {
 		expect(handleChangePage).toHaveBeenCalledWith(4);
 		fireEvent.click(getByText("6"));
 		expect(handleChangePage).toHaveBeenCalledWith(6);
-		fireEvent.click(getByText("⏮"));
+		fireEvent.click(getByText("⏮1"));
 		expect(handleChangePage).toHaveBeenCalledWith(1);
-		fireEvent.click(getByText("⏭"));
+		fireEvent.click(getByText("7⏭"));
 		expect(handleChangePage).toHaveBeenCalledWith(7);
 	});
 });
