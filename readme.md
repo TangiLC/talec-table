@@ -99,19 +99,28 @@ function myPage(){
 
 ```jsx
 import React from "react";
-import {TalecTable} from "talec-table";
+import { TalecTable } from "talec-table";
 
 import myData from "path";
 
-function myPage(){
-  const myTitles = {
-    FN: "1st Name", LN: "Last Name", AL: "Alias", D1: "#1 Comic",
-    CO: "Color", SY: "Symbol", WE: "Weight",	UN: "Universe"};
-  const dataToHide =["CO","UN"]
+function myPage() {
+	const myTitles = {
+		FN: "1st Name",
+		LN: "Last Name",
+		AL: "Alias",
+		D1: "#1 Comic",
+		CO: "Color",
+		SY: "Symbol",
+		WE: "Weight",
+		UN: "Universe",
+	};
+	const dataToHide = ["CO", "UN"];
 
-  return(
-    <div><TalecTable lines={myData} titles={myTitles} hide={dataToHide}/><div>
-  )
+	return (
+		<div>
+			<TalecTable lines={myData} titles={myTitles} hide={dataToHide} />
+		</div>
+	);
 }
 ```
 
@@ -130,9 +139,9 @@ By passing a css object in the <i>custom</i> prop, you can change the display of
 
 ```jsx
 const myCustom = {
-	titleStyle: { backgroundColor: "orange" },
-	evenLineStyle: { backgroundColor: "purple" },
-	oddLineStyle: { backgroundColor: "yellow" },
+	titleStyle: { backgroundColor: "lightskyblue" },
+	evenLineStyle: { backgroundColor: "lightblue" },
+	oddLineStyle: { backgroundColor: "lightcyan" },
 };
 ```
 
@@ -140,21 +149,23 @@ const myCustom = {
 
 ```jsx
 import React from "react";
-import {TalecTable} from "talec-table";
+import { TalecTable } from "talec-table";
 
 import myData from "path";
 import myTitles from "path";
 
-function myPage(){
- const myCustom = {
-	titleStyle: { backgroundColor: "lightskyblue" },
-	evenLineStyle: { backgroundColor: "lightblue" },
-	oddLineStyle: { backgroundColor: "lightcyan" },
-}
+function myPage() {
+	const myCustom = {
+		titleStyle: { backgroundColor: "lightskyblue" },
+		evenLineStyle: { backgroundColor: "lightblue" },
+		oddLineStyle: { backgroundColor: "lightcyan" },
+	};
 
-  return(
-    <div><TalecTable lines={myData} titles={myTitles} custom={myCustom}/><div>
-  )
+	return (
+		<div>
+			<TalecTable lines={myData} titles={myTitles} custom={myCustom} />
+		</div>
+	);
 }
 ```
 
@@ -179,22 +190,24 @@ const myColumns = {
 
 ```jsx
 import React from "react";
-import {TalecTable} from "talec-table";
+import { TalecTable } from "talec-table";
 
 import myData from "path";
 import myTitles from "path";
 
-function myPage(){
- const myColumns = {
-	columns: {
-		values: ["UN", "D1", "LN", "FN", "AL", "SY", "CO"],
-		width: ["10%", "", "15%", "15%", "15%", "8%", "6rem"],
-	},
-};
+function myPage() {
+	const myColumns = {
+		columns: {
+			values: ["UN", "D1", "LN", "FN", "AL", "SY", "CO"],
+			width: ["10%", "", "15%", "15%", "15%", "8%", "6rem"],
+		},
+	};
 
-  return(
-    <div><TalecTable lines={myData} titles={myTitles} custom={myColumns}/><div>
-  )
+	return (
+		<div>
+			<TalecTable lines={myData} titles={myTitles} custom={myColumns} />
+		</div>
+	);
 }
 ```
 
@@ -226,35 +239,37 @@ const customAction = {
 
 ```jsx
 import React from "react";
-import {TalecTable} from "talec-table";
-import { BsTrash3Fill} from "react-icons/bs";
+import { TalecTable } from "talec-table";
+import { BsTrash3Fill } from "react-icons/bs";
 
 import myData from "path";
 import myTitles from "path";
 
-function myPage(){
+function myPage() {
+	const deleteItem = (item) => {
+		//your logic here
+		console.log(item);
+	};
 
-const deleteItem =(item)=>{
-  //your logic here
-  console.log(item)}
+	const customAction = {
+		actionColumn: {
+			name: "Actions",
+			actions: [
+				{
+					icon: <BsTrash3Fill />,
+					func: deleteItem,
+					target: "AL",
+					label: "delete",
+				},
+			],
+		},
+	};
 
- const customAction = {
-	actionColumn: {
-		name: "Actions",
-		actions: [
-			{
-				icon: <BsTrash3Fill />,
-				func: deleteItem,
-				target: "AL",
-				label: "delete",
-			},
-		],
-	},
-};
-
-  return(
-    <div><TalecTable lines={myData} titles={myTitles} custom={customAction}/><div>
-  )
+	return (
+		<div>
+			<TalecTable lines={myData} titles={myTitles} custom={customAction} />
+		</div>
+	);
 }
 ```
 
@@ -282,23 +297,25 @@ const customText = {
 
 ```jsx
 import React from "react";
-import {TalecTable} from "talec-table";
+import { TalecTable } from "talec-table";
 
 import myData from "path";
 import myTitles from "path";
 
-function myPage(){
-  const customText = {
-	text: {
-		itemPerPage: "How many Heros per page ? ",
-		search: "Seeking help ?",
-		showingItems: ["Digging Hero #", "to", "out of"],
-	},
-};
+function myPage() {
+	const customText = {
+		text: {
+			itemPerPage: "How many Heros per page ? ",
+			search: "Seeking help ?",
+			showingItems: ["Digging Hero #", "to", "out of"],
+		},
+	};
 
-  return(
-    <div><TalecTable lines={myData} titles={myTitles} custom={customText}/><div>
-  )
+	return (
+		<div>
+			<TalecTable lines={myData} titles={myTitles} custom={customText} />
+		</div>
+	);
 }
 ```
 
@@ -319,17 +336,19 @@ const customLength = { lengthChoice: [6, 12, 25, 60] };
 
 ```jsx
 import React from "react";
-import {TalecTable} from "talec-table";
+import { TalecTable } from "talec-table";
 
 import myData from "path";
 import myTitles from "path";
 
-function myPage(){
-  const customLength = { lengthChoice: [6, 12, 25, 60] };
+function myPage() {
+	const customLength = { lengthChoice: [6, 12, 25, 60] };
 
-  return(
-    <div><TalecTable lines={myData} titles={myTitles} custom={customLength}/><div>
-  )
+	return (
+		<div>
+			<TalecTable lines={myData} titles={myTitles} custom={customLength} />
+		</div>
+	);
 }
 ```
 
@@ -349,17 +368,19 @@ const customSearch = { searchCol: ["AL", "CO"] };
 
 ```jsx
 import React from "react";
-import {TalecTable} from "talec-table";
+import { TalecTable } from "talec-table";
 
 import myData from "path";
 import myTitles from "path";
 
-function myPage(){
-  const customSearch = { searchCol: ["AL", "CO"] };
+function myPage() {
+	const customSearch = { searchCol: ["AL", "CO"] };
 
-  return(
-    <div><TalecTable lines={myData} titles={myTitles} custom={customSearch}/><div>
-  )
+	return (
+		<div>
+			<TalecTable lines={myData} titles={myTitles} custom={customSearch} />
+		</div>
+	);
 }
 ```
 
